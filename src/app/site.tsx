@@ -207,7 +207,15 @@ const categories = [
   ],
 ] as const
 
-export function Meta({ title, description }: { title: string; description: string }) {
+export function Meta({
+  title,
+  description,
+  noindex = false,
+}: {
+  title: string
+  description: string
+  noindex?: boolean
+}) {
   const loc = useLocation()
   const canonicalUrl = `${SITE_URL}${loc.pathname}`
 
@@ -219,6 +227,11 @@ export function Meta({ title, description }: { title: string; description: strin
     document
       .querySelector('meta[name="description"]')
       ?.setAttribute("content", description)
+
+    // Robots directive
+    document
+      .querySelector('meta[name="robots"]')
+      ?.setAttribute("content", noindex ? "noindex, nofollow" : "index, follow")
 
     // Canonical — ensure exactly one tag, always pointing to this page
     let canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]')
@@ -1700,6 +1713,7 @@ export function AdminLogin() {
       <Meta
         title="Admin Login"
         description="Secure ZAZOO Holidays administration portal."
+        noindex
       />
       <section className="login">
         <div>
@@ -1749,6 +1763,7 @@ export function Admin() {
       <Meta
         title="Admin Dashboard Preview"
         description="Read-only ZAZOO Holidays dashboard preview."
+        noindex
       />
       <section className="admin">
         <aside>

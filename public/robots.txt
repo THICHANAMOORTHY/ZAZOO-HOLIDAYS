@@ -1,4 +1,15 @@
 User-agent: *
 Allow: /
+Allow: /assets/
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.svg$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.webp$
+
+# Prevent search bots from indexing private administrative pages
+Disallow: /admin
+Disallow: /admin/
 
 Sitemap: https://zazoo1.vercel.app/sitemap.xml
