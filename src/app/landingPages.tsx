@@ -18,6 +18,7 @@ import {
   School,
   BriefcaseBusiness,
   Compass,
+  Camera,
 } from "lucide-react"
 import { Button, Meta, PageHero, PackageCard, packages, whatsapp, PHONE, WA } from "./site"
 
@@ -32,6 +33,9 @@ interface LandingPageProps {
   eyebrow: string
   h1: string
   intro: string
+  heroImage: string
+  heroImageAlt: string
+  gallery?: { src: string; alt: string; caption: string }[]
   highlights: { title: string; desc: string; icon: React.ComponentType<{ className?: string }> }[]
   activities: string[]
   itinerary: { day: string; title: string; desc: string }[]
@@ -51,6 +55,9 @@ function LandingTemplate({
   eyebrow,
   h1,
   intro,
+  heroImage,
+  heroImageAlt,
+  gallery,
   highlights,
   activities,
   itinerary,
@@ -71,6 +78,7 @@ function LandingTemplate({
         "@type": schemaType,
         name: h1,
         description: metaDesc,
+        image: heroImage.startsWith("http") ? heroImage : `https://zazoo1.vercel.app${heroImage}`,
         url: `https://zazoo1.vercel.app/${canonicalPath}`,
         provider: {
           "@type": "TravelAgency",
@@ -109,8 +117,26 @@ function LandingTemplate({
 
       <PageHero eyebrow={eyebrow} title={h1} text={intro} />
 
+      {/* Featured Photograph Banner */}
+      <div style={{ maxWidth: "1260px", margin: "-25px auto 40px", padding: "0 26px" }}>
+        <div style={{ position: "relative", borderRadius: "18px", overflow: "hidden", maxHeight: "440px", boxShadow: "0 20px 48px rgb(22 79 60 / 0.12)" }}>
+          <img
+            src={heroImage}
+            alt={heroImageAlt}
+            width={1200}
+            height={480}
+            style={{ width: "100%", height: "420px", objectFit: "cover", display: "block" }}
+            decoding="async"
+          />
+          <div style={{ position: "absolute", bottom: "16px", left: "20px", background: "rgba(16, 45, 36, 0.88)", backdropFilter: "blur(6px)", color: "#fff", padding: "8px 18px", borderRadius: "99px", fontSize: "12px", fontWeight: "600", display: "flex", alignItems: "center", gap: "8px" }}>
+            <MapPin style={{ width: "14px", height: "14px", color: "#d9f24f" }} />
+            <span>{heroImageAlt}</span>
+          </div>
+        </div>
+      </div>
+
       {/* Quick Info Bar */}
-      <section className="section" style={{ padding: "40px 26px 20px" }}>
+      <section className="section" style={{ padding: "10px 26px 40px" }}>
         <div className="how-grid" style={{ gridTemplateColumns: `repeat(${travelInfo.length}, 1fr)` }}>
           {travelInfo.map((info) => (
             <div key={info.label} className="how-card" style={{ padding: "20px 22px" }}>
@@ -142,6 +168,36 @@ function LandingTemplate({
           ))}
         </div>
       </section>
+
+      {/* Photo Showcase Gallery */}
+      {gallery && gallery.length > 0 && (
+        <section className="section" style={{ padding: "30px 26px 60px" }}>
+          <div className="heading">
+            <span>Visual Tour</span>
+            <h2>Photographs & Scenic Stops</h2>
+            <p>Real landscapes and travel stops featured on this journey.</p>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "22px" }}>
+            {gallery.map((g) => (
+              <figure key={g.caption} style={{ margin: 0, borderRadius: "16px", overflow: "hidden", border: "1px solid #dfe1dc", background: "white", boxShadow: "0 10px 30px rgb(22 79 60 / 0.06)" }}>
+                <img
+                  src={g.src}
+                  alt={g.alt}
+                  width={600}
+                  height={380}
+                  loading="lazy"
+                  decoding="async"
+                  style={{ width: "100%", height: "240px", objectFit: "cover", display: "block" }}
+                />
+                <figcaption style={{ padding: "14px 18px", fontSize: "13px", color: "#45544e", fontWeight: "600", display: "flex", alignItems: "center", gap: "8px" }}>
+                  <Camera style={{ width: "15px", height: "15px", color: "#164f3c" }} />
+                  {g.caption}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Activities & Inclusions */}
       <section className="section tinted">
@@ -252,13 +308,19 @@ function LandingTemplate({
 export function CollegeToursPage() {
   return (
     <LandingTemplate
-      metaTitle="College Tours in Tamil Nadu"
-      metaDesc="College tours in Tamil Nadu with ZAZOO Holidays. Industrial visits, educational travel, verified stays, and dedicated transport for college students."
+      metaTitle="College Tours in Tamil Nadu | Industrial Visits & Group Trips"
+      metaDesc="College tours in Tamil Nadu by ZAZOO Holidays. Curriculum-aligned industrial visits, safe AC coach transit, vetted dorms, and dedicated road support."
       canonicalPath="services/college-tours"
       eyebrow="Specialized Student Travel"
       h1="College Tours & Industrial Visits in Tamil Nadu"
       intro="Carefully organized college trips, industrial visits, and graduation getaways departing from Tamil Nadu. We manage private coach transport, vetted dorms and hotels, and safety on the road."
       schemaType="Service"
+      heroImage="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=82"
+      heroImageAlt="College students and industrial visit travel group"
+      gallery={[
+        { src: "/ooty.jpg", alt: "Nilgiris mountain drive for college tours", caption: "Scenic Nilgiri mountain drive for college groups" },
+        { src: "/coorg.webp", alt: "Barapole river rafting and team activities", caption: "Barapole river rafting and outdoor team activities" },
+      ]}
       travelInfo={[
         { label: "Origin", value: "Any campus in Tamil Nadu" },
         { label: "Vehicle Types", value: "Pushback AC buses & tempo travelers" },
@@ -336,13 +398,19 @@ export function CollegeToursPage() {
 export function SchoolToursPage() {
   return (
     <LandingTemplate
-      metaTitle="School Educational Tours"
-      metaDesc="School educational tours in Tamil Nadu by ZAZOO Holidays. High-safety student trips, certified coaches, nutritious meals, and guided sightseeing."
+      metaTitle="School Educational Tours in Tamil Nadu | Safe Student Travel"
+      metaDesc="School educational tours in Tamil Nadu by ZAZOO Holidays. High-safety student excursions, certified coaches, nutritious meals, and guided sightseeing."
       canonicalPath="services/school-tours"
       eyebrow="Safe Educational Excursions"
       h1="School Educational Tours in Tamil Nadu"
       intro="Structured, safe, and engaging school excursions across Tamil Nadu and neighbouring hill regions. We work alongside school teachers to craft age-appropriate itineraries with maximum safety."
       schemaType="Service"
+      heroImage="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=82"
+      heroImageAlt="School educational excursions and student group study"
+      gallery={[
+        { src: "/kodaikanal.jpg", alt: "Kodaikanal peaceful lake and student walks", caption: "Quiet lake and botanical garden walks for students" },
+        { src: "/ooty.jpg", alt: "Tea factory educational tour in Ooty", caption: "Interactive tea processing educational factory visits" },
+      ]}
       travelInfo={[
         { label: "Target Groups", value: "Primary, middle & senior school batches" },
         { label: "Safety Level", value: "Zero night-driving, verified boarding" },
@@ -416,13 +484,19 @@ export function SchoolToursPage() {
 export function FamilyTripsPage() {
   return (
     <LandingTemplate
-      metaTitle="Family Tour Packages"
+      metaTitle="Family Tour Packages from Tamil Nadu | Comfortable Group Holidays"
       metaDesc="Family tour packages from Tamil Nadu with ZAZOO Holidays. Relaxed pacing, comfortable resort stays, and private vehicle transport for all ages."
       canonicalPath="services/family-trips"
       eyebrow="Multigenerational Holidays"
       h1="Family Tour Packages from Tamil Nadu"
       intro="Private, relaxing holiday journeys crafted for parents, grandparents, and children. Enjoy scenic hill resorts, private cabs or tempo travelers, and stress-free schedules with ZAZOO Holidays."
       schemaType="Service"
+      heroImage="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1200&q=82"
+      heroImageAlt="Family nature holiday with scenic mountain views"
+      gallery={[
+        { src: "/munnar.jpg", alt: "Munnar tea hills for family vacations", caption: "Gentle rolling tea gardens in Munnar for all generations" },
+        { src: "/kodaikanal.jpg", alt: "Kodaikanal peaceful pedal boating", caption: "Peaceful pedal boating on Kodai Lake" },
+      ]}
       travelInfo={[
         { label: "Vehicle Scope", value: "Dedicated private sedan, SUV, or tempo" },
         { label: "Hotel Category", value: "Family suites & boutique tea estates" },
@@ -496,13 +570,19 @@ export function FamilyTripsPage() {
 export function CorporateToursPage() {
   return (
     <LandingTemplate
-      metaTitle="Corporate Group Trips"
+      metaTitle="Corporate Group Trips & Team Offsites | ZAZOO Holidays"
       metaDesc="Corporate group trips and team offsites from Tamil Nadu with ZAZOO Holidays. Team-building activities, meeting facilities, and seamless transfers."
       canonicalPath="services/corporate-tours"
       eyebrow="Team Offsites & Outings"
       h1="Corporate Tours & Team Offsites"
       intro="Recharge your company team with professional travel arrangements. From leadership retreats in Munnar to river rafting offsites in Coorg, we handle complete transfers, stays, and activities."
       schemaType="Service"
+      heroImage="https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1200&q=82"
+      heroImageAlt="Corporate team retreat and outdoor offsite meeting"
+      gallery={[
+        { src: "/coorg.webp", alt: "Corporate river rafting in Coorg", caption: "Team-building white-water rafting on the Barapole River" },
+        { src: "/munnar.jpg", alt: "Munnar resort offsite", caption: "Conference and strategy sessions amidst Munnar hills" },
+      ]}
       travelInfo={[
         { label: "Company Sizes", value: "10 to 100+ employees" },
         { label: "Facilities", value: "Conference halls, projector setup, lawn dining" },
@@ -576,13 +656,19 @@ export function CorporateToursPage() {
 export function UnofficialTripsPage() {
   return (
     <LandingTemplate
-      metaTitle="Unofficial Group Trips"
+      metaTitle="Unofficial Group Trips & Friends Getaways | Adventure Travel"
       metaDesc="Unofficial group trips and friends getaways with ZAZOO Holidays. Flexible road trips, scenic campfires, adventure stays, and budget-friendly plans."
       canonicalPath="services/unofficial-trips"
       eyebrow="Spontaneous Adventures"
       h1="Unofficial Group Trips & Friends Getaways"
       intro="Weekend escapes and road journeys designed for groups of friends. Flexible itineraries, offbeat trails, campfire nights, and zero rigid checklists with ZAZOO Holidays."
       schemaType="Service"
+      heroImage="https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1200&q=82"
+      heroImageAlt="Friends enjoying a spontaneous road trip adventure"
+      gallery={[
+        { src: "/coorg.webp", alt: "Campfire and adventure in Karnataka", caption: "Campfire nights and river rafting in Coorg" },
+        { src: "/kodaikanal.jpg", alt: "Pine forest hiking and scenic views", caption: "Pine forest trekking and scenic viewpoint halts" },
+      ]}
       travelInfo={[
         { label: "Group Dynamic", value: "Friends, batchmates, trekking groups" },
         { label: "Pacing", value: "100% flexible, adventure-forward" },
@@ -660,13 +746,19 @@ export function UnofficialTripsPage() {
 export function OotyPage() {
   return (
     <LandingTemplate
-      metaTitle="Ooty Tour Packages"
+      metaTitle="Ooty Tour Packages from Tamil Nadu | Nilgiris Hill Station Trips"
       metaDesc="Ooty tour packages from Tamil Nadu with ZAZOO Holidays. Nilgiris tea estates, Botanical Gardens, Doddabetta Peak, and comfortable private transport."
       canonicalPath="destinations/ooty"
       eyebrow="Queen of Hill Stations · Tamil Nadu"
       h1="Ooty Tour Packages from Tamil Nadu"
       intro="Perched at 2,240 meters in the Nilgiris, Ooty is South India's quintessential hill station. From sprawling tea gardens and heritage toy trains to cool mist-laden mornings, our Ooty tour packages make group travel effortless."
       schemaType="TouristDestination"
+      heroImage="/ooty.jpg"
+      heroImageAlt="Ooty Nilgiri hills, tea plantations and mist"
+      gallery={[
+        { src: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80", alt: "Green carpet tea estates in Coonoor and Ooty", caption: "Sprawling Nilgiri tea estates and Coonoor valley" },
+        { src: "/kodaikanal.jpg", alt: "Nilgiri Mountain Railway and lake viewpoints", caption: "Scenic mountain landscapes and heritage railway vistas" },
+      ]}
       travelInfo={[
         { label: "Altitude", value: "2,240 meters (Nilgiris)" },
         { label: "Best Travel Window", value: "October to June" },
@@ -740,13 +832,19 @@ export function OotyPage() {
 export function KodaikanalPage() {
   return (
     <LandingTemplate
-      metaTitle="Kodaikanal Tour Packages"
+      metaTitle="Kodaikanal Tour Packages from Tamil Nadu | Princess of Hill Stations"
       metaDesc="Kodaikanal tour packages from Tamil Nadu with ZAZOO Holidays. Kodai Lake, Coaker's Walk, Pine Forests, and tranquil resort stays in Palani Hills."
       canonicalPath="destinations/kodaikanal"
       eyebrow="Princess of Hill Stations · Tamil Nadu"
       h1="Kodaikanal Tour Packages from Tamil Nadu"
       intro="Nestled at 2,133 meters in the Palani Hills, Kodaikanal offers a quieter, mistier hill retreat. Stroll around the iconic star-shaped lake, walk through towering pine forests, and take in cliffside valley views."
       schemaType="TouristDestination"
+      heroImage="/kodaikanal.jpg"
+      heroImageAlt="Kodaikanal star-shaped lake and Palani hills"
+      gallery={[
+        { src: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=80", alt: "Pine forest walking trails and Coaker's Walk", caption: "Pine forest walking trails and Coaker's Walk viewpoints" },
+        { src: "/ooty.jpg", alt: "Misty mountain viewpoints and waterfalls", caption: "Misty mountain viewpoints and Silver Cascade Falls" },
+      ]}
       travelInfo={[
         { label: "Altitude", value: "2,133 meters (Palani Hills)" },
         { label: "Best Travel Window", value: "September to May" },
@@ -820,13 +918,19 @@ export function KodaikanalPage() {
 export function MunnarPage() {
   return (
     <LandingTemplate
-      metaTitle="Munnar Tour Experiences"
+      metaTitle="Munnar Tour Experiences from Tamil Nadu | Kerala Tea Hills"
       metaDesc="Munnar tour packages from Tamil Nadu with ZAZOO Holidays. Sprawling tea estates, Eravikulam National Park, Mattupetty Dam, and Western Ghats mist."
       canonicalPath="destinations/munnar"
       eyebrow="Western Ghats Tea Paradise · Kerala"
       h1="Munnar Tour Experiences from Tamil Nadu"
       intro="Sprawling green tea estates rolling as far as the eye can see, cool misty mornings, and rich biodiversity. Located in Kerala's high ranges, Munnar is an unforgettable destination for Tamil Nadu travelers."
       schemaType="TouristDestination"
+      heroImage="/munnar.jpg"
+      heroImageAlt="Munnar rolling tea plantations and Western Ghats peaks"
+      gallery={[
+        { src: "https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=800&q=80", alt: "Eravikulam National Park and tea garden trails", caption: "Eravikulam National Park trails and Nilgiri Tahr sightings" },
+        { src: "/kodaikanal.jpg", alt: "Mattupetty Dam lake and mist-shrouded viewpoints", caption: "Mattupetty Dam lake speedboating and tea estate views" },
+      ]}
       travelInfo={[
         { label: "Altitude", value: "1,600 meters (High Ranges)" },
         { label: "Best Travel Window", value: "September to April" },
@@ -900,13 +1004,19 @@ export function MunnarPage() {
 export function CoorgPage() {
   return (
     <LandingTemplate
-      metaTitle="Coorg Travel Packages"
+      metaTitle="Coorg Travel Packages from Tamil Nadu | River Rafting & Coffee Hills"
       metaDesc="Coorg tour packages from Tamil Nadu with ZAZOO Holidays. Barapole River rafting, coffee plantation homestays, Abbey Falls, and Raja's Seat in Karnataka."
       canonicalPath="destinations/coorg"
       eyebrow="Coffee & Adventure Country · Karnataka"
       h1="Karnataka Coorg Travel Packages from Tamil Nadu"
       intro="Known as the Scotland of India, Coorg (Kodagu) blends misty hills, fragrant coffee plantations, thrilling Barapole river rafting, and distinct cultural heritage into an incredible group holiday."
       schemaType="TouristDestination"
+      heroImage="/coorg.webp"
+      heroImageAlt="Barapole River rafting and Western Ghats hills in Coorg"
+      gallery={[
+        { src: "https://images.unsplash.com/photo-1464278533981-50106e6176b1?auto=format&fit=crop&w=800&q=80", alt: "Coffee estate plantations in Madikeri", caption: "Fragrant coffee plantation walking trails and estate homestays" },
+        { src: "/ooty.jpg", alt: "Abbey Falls waterfall and viewpoint", caption: "Abbey Falls roaring cascade and Raja's Seat sunset viewpoints" },
+      ]}
       travelInfo={[
         { label: "Altitude", value: "1,100 to 1,750 meters" },
         { label: "Best Travel Window", value: "July to March" },
@@ -985,7 +1095,7 @@ export function PrivacyPage() {
   return (
     <>
       <Meta
-        title="Privacy Policy"
+        title="Privacy Policy | ZAZOO Holidays"
         description="Privacy policy of ZAZOO Holidays. Learn how we handle your travel enquiry details and protect personal contact information."
       />
       <PageHero
@@ -1046,7 +1156,7 @@ export function TermsPage() {
   return (
     <>
       <Meta
-        title="Terms and Conditions"
+        title="Terms and Conditions | ZAZOO Holidays"
         description="Terms and conditions for ZAZOO Holidays. Review terms covering group tour planning, itineraries, bookings, and travel coordination."
       />
       <PageHero
