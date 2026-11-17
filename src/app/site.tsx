@@ -47,6 +47,7 @@ import {
 
 const PHONE = "+91 73589 20436"
 const WA = "https://wa.me/917358920436"
+const SITE_URL = "https://zazoo1.vercel.app"
 const image = (id: string) =>
   id.startsWith("/") || id.startsWith("http")
     ? id
@@ -207,13 +208,51 @@ const categories = [
 ] as const
 
 function Meta({ title, description }: { title: string; description: string }) {
+  const loc = useLocation()
+  const canonicalUrl = `${SITE_URL}${loc.pathname}`
+
   useEffect(() => {
+    // Title
     document.title = `${title} | ZAZOO Holidays`
+
+    // Meta description
     document
       .querySelector('meta[name="description"]')
       ?.setAttribute("content", description)
+
+    // Canonical — ensure exactly one tag, always pointing to this page
+    let canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]')
+    if (!canonical) {
+      canonical = document.createElement("link")
+      canonical.rel = "canonical"
+      document.head.appendChild(canonical)
+    }
+    canonical.href = canonicalUrl
+
+    // og:url — per-page, not homepage
+    let ogUrl = document.querySelector<HTMLMetaElement>('meta[property="og:url"]')
+    if (!ogUrl) {
+      ogUrl = document.createElement("meta")
+      ogUrl.setAttribute("property", "og:url")
+      document.head.appendChild(ogUrl)
+    }
+    ogUrl.setAttribute("content", canonicalUrl)
+
+    // og:title — remove all, then set a single authoritative one
+    document
+      .querySelectorAll('meta[property="og:title"]')
+      .forEach((el, i) => { if (i > 0) el.remove() })
+    document
+      .querySelector('meta[property="og:title"]')
+      ?.setAttribute("content", `${title} | ZAZOO Holidays`)
+
+    // og:description
+    document
+      .querySelector('meta[property="og:description"]')
+      ?.setAttribute("content", description)
+
     window.scrollTo(0, 0)
-  }, [title, description])
+  }, [title, description, canonicalUrl])
   return null
 }
 function Brand({ light = false }: { light?: boolean }) {
@@ -581,7 +620,181 @@ export function Home() {
           </Button>
         </div>
       </section>
-      <section className="section quotes">
+
+      {/* ── Popular Destinations ── */}
+      <section className="section" aria-labelledby="dest-heading">
+        <Heading
+          eyebrow="Where we go"
+          title="Popular destinations from Tamil Nadu"
+          text="Every destination below is reachable from Tamil Nadu by road or rail, making them ideal for group travel without the stress of flights."
+        />
+        <div className="dest-grid">
+          {[
+            {
+              name: "Ooty (Udhagamandalam)",
+              state: "Tamil Nadu",
+              desc:
+                "Ooty sits at around 2,240 m in the Nilgiris and is one of the most visited hill stations in South India. The town is known for its tea and eucalyptus plantations, Ooty Lake, Botanical Gardens, and cool climate throughout the year. It is a comfortable journey from Coimbatore and an easy choice for first-time group trips.",
+            },
+            {
+              name: "Kodaikanal",
+              state: "Tamil Nadu",
+              desc:
+                "Kodaikanal is a quiet hill town in the Palani Hills at around 2,133 m. The star-shaped Kodai Lake, Coaker's Walk, Pine Forests, and Silver Cascade Falls are well-known spots. It suits groups looking for a relaxed pace with scenic walks and boat rides rather than a busy tourist circuit.",
+            },
+            {
+              name: "Munnar",
+              state: "Kerala",
+              desc:
+                "Munnar in the Western Ghats is famous for its rolling tea estates, misty mornings, and biodiversity. Eravikulam National Park, Mattupetty Dam, and Top Station are popular stops. The cooler climate and scenic roads make it a refreshing option for family and college groups from Tamil Nadu.",
+            },
+            {
+              name: "Coorg (Madikeri)",
+              state: "Karnataka",
+              desc:
+                "Coorg in Karnataka is known for its coffee and spice plantations, the Barapole River, Abbey Falls, and Raja's Seat viewpoint. The region's hilly terrain supports activities like river rafting and plantation walks. It is a good fit for groups seeking a mix of nature and adventure.",
+            },
+          ].map((d) => (
+            <div key={d.name} className="dest-card">
+              <div className="dest-card-header">
+                <MapPin />
+                <span>{d.state}</span>
+              </div>
+              <h3>{d.name}</h3>
+              <p>{d.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Trip Types ── */}
+      <section className="section tinted" aria-labelledby="types-heading">
+        <Heading
+          eyebrow="Who we plan for"
+          title="Trip types we organise"
+          text="We work with different kinds of groups and try to match the plan to the people, not the other way around."
+        />
+        <div className="types-grid">
+          {[
+            {
+              label: "College IV Trips",
+              icon: GraduationCap,
+              text: "College industrial visit and educational tour packages are planned with the academic calendar in mind. We handle transport, accommodation booking, and on-road coordination so faculty can focus on the students. Routes and stops are chosen to meet IV requirements where applicable.",
+            },
+            {
+              label: "School Tours",
+              icon: School,
+              text: "School trips need careful attention to safety, timing, and age-appropriate activity. We work with teachers to plan manageable itineraries that include meaningful stops without overloading students. Transport is arranged with safety in mind.",
+            },
+            {
+              label: "Family Trips",
+              icon: Users,
+              text: "Family travel involves different ages and comfort levels. We plan trips that include a mix of sightseeing, rest time, and optional activities. Accommodation options are discussed based on the family's needs. We keep the itinerary practical rather than packed.",
+            },
+            {
+              label: "Corporate Tours",
+              icon: BriefcaseBusiness,
+              text: "Corporate outings and employee trips are arranged with group size and schedule in mind. We manage transport logistics, meal arrangements, and activity bookings so the team can enjoy the break. Team-building activity suggestions can be included.",
+            },
+            {
+              label: "Friends Getaways",
+              icon: Mountain,
+              text: "Friend group trips tend to be more flexible and adventure-oriented. We work with the group's interests and budget to suggest routes and stays. These trips often include a mix of outdoor activity, sightseeing, and unstructured time.",
+            },
+          ].map(({ label, icon: Icon, text }) => (
+            <div key={label} className="type-card">
+              <span className="type-icon">
+                <Icon />
+              </span>
+              <h3>{label}</h3>
+              <p>{text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── How It Works ── */}
+      <section className="section" aria-labelledby="how-heading">
+        <Heading
+          eyebrow="How we work"
+          title="From enquiry to travel — a simple process"
+          text="We keep the process straightforward so there is no confusion between expressing interest and actual booking."
+        />
+        <div className="how-grid">
+          {[
+            {
+              step: "1",
+              title: "Share your plan",
+              text: "Tell us your group size, destination preference, travel dates, and any specific requirements. You can do this through the contact form, the trip planner, or directly on WhatsApp.",
+            },
+            {
+              step: "2",
+              title: "Receive a custom itinerary",
+              text: "We put together a sample itinerary based on your inputs. This includes suggested stops, estimated travel times, and accommodation options. We share it for review before anything is finalised.",
+            },
+            {
+              step: "3",
+              title: "Discuss and adjust",
+              text: "If anything needs to change — dates, stops, budget adjustments — we work through it with you. The itinerary is not fixed until you are happy with it.",
+            },
+            {
+              step: "4",
+              title: "Confirm and travel",
+              text: "Once the plan is agreed, we move to confirmation. During the trip, we stay in contact and handle any changes that come up on the road.",
+            },
+          ].map(({ step, title, text }) => (
+            <div key={step} className="how-card">
+              <span className="how-step">{step}</span>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── FAQ ── */}
+      <section className="section tinted" aria-labelledby="faq-heading">
+        <Heading
+          eyebrow="Common questions"
+          title="Frequently asked questions"
+          text="Answers to questions we hear often. If yours is not here, reach out on WhatsApp or through the contact page."
+        />
+        <div className="faq-list">
+          {[
+            {
+              q: "Do you operate only within Tamil Nadu?",
+              a: "No. While we are based in Tamil Nadu and most enquiries come from there, we plan trips to destinations across South India including Kerala and Karnataka. The starting point for most trips is from Tamil Nadu.",
+            },
+            {
+              q: "Is this a booking platform or a travel agency?",
+              a: "ZAZOO Holidays is a travel planning service. We work directly with groups to plan and coordinate trips. We are not an online booking platform — every trip is handled through direct communication.",
+            },
+            {
+              q: "Can you plan a trip for a small group?",
+              a: "Yes. Group size is not a fixed requirement. We have worked with groups of varying sizes. The plan and logistics are adjusted accordingly.",
+            },
+            {
+              q: "Are the sample packages on the website fixed itineraries?",
+              a: "No. The packages shown are sample itineraries meant to give an idea of what a trip to that destination could look like. Every trip is planned based on the specific group's needs, dates, and preferences.",
+            },
+            {
+              q: "How do I get a price for a trip?",
+              a: "Pricing depends on group size, accommodation choice, travel dates, and the specific itinerary. We share pricing after discussing your requirements. You can reach us via WhatsApp or through the contact form.",
+            },
+            {
+              q: "Do you handle transport arrangements?",
+              a: "Yes. Transport is typically part of the trip plan. We coordinate vehicle arrangements based on group size and route. Details are discussed during the planning process.",
+            },
+          ].map(({ q, a }) => (
+            <div key={q} className="faq-item">
+              <h3>{q}</h3>
+              <p>{a}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="section quotes" aria-labelledby="reviews-heading">
         <Heading
           eyebrow="Travel stories"
           title="Made for memories, not checklists"

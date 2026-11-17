@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#102d24;stop-opacity:1" />
+      <stop offset="60%" style="stop-color:#164f3c;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a6b4a;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#d9f24f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c8e040;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)" />
+
+  <!-- Decorative circles -->
+  <circle cx="1050" cy="120" r="200" fill="rgba(255,255,255,0.03)" />
+  <circle cx="980" cy="80" r="130" fill="rgba(217,242,79,0.05)" />
+  <circle cx="150" cy="530" r="160" fill="rgba(255,255,255,0.02)" />
+
+  <!-- Accent bar -->
+  <rect x="80" y="260" width="6" height="110" fill="url(#accent)" rx="3" />
+
+  <!-- Brand name -->
+  <text x="110" y="310" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="72" font-weight="900" fill="white" letter-spacing="-2">ZAZOO</text>
+  <text x="110" y="355" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="28" font-weight="400" fill="rgba(255,255,255,0.65)" letter-spacing="8">HOLIDAYS</text>
+
+  <!-- Tagline -->
+  <text x="110" y="420" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="rgba(255,255,255,0.80)">Your Journey. Our Adventure.</text>
+
+  <!-- Description -->
+  <text x="110" y="470" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="rgba(255,255,255,0.55)">Thoughtfully planned group trips from Tamil Nadu</text>
+  <text x="110" y="495" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="rgba(255,255,255,0.55)">College IV · Family Trips · Corporate Tours · Friends Getaways</text>
+
+  <!-- Accent pill bottom -->
+  <rect x="80" y="550" width="220" height="38" rx="19" fill="url(#accent)" />
+  <text x="190" y="574" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="800" fill="#102d24" text-anchor="middle" letter-spacing="1">PLAN YOUR TRIP →</text>
+
+  <!-- Right side decorative destination text -->
+  <text x="820" y="200" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="rgba(217,242,79,0.7)" letter-spacing="3">DESTINATIONS</text>
+  <text x="820" y="260" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="38" font-weight="800" fill="rgba(255,255,255,0.90)">Ooty</text>
+  <text x="820" y="315" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="38" font-weight="800" fill="rgba(255,255,255,0.75)">Kodaikanal</text>
+  <text x="820" y="370" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="38" font-weight="800" fill="rgba(255,255,255,0.60)">Munnar</text>
+  <text x="820" y="425" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="38" font-weight="800" fill="rgba(255,255,255,0.45)">Coorg</text>
+  <text x="820" y="480" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="38" font-weight="800" fill="rgba(255,255,255,0.30)">+ more</text>
+
+  <!-- Vertical divider -->
+  <line x1="760" y1="150" x2="760" y2="560" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+</svg>
