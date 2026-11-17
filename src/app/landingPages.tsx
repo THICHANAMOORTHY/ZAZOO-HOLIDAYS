@@ -1014,8 +1014,8 @@ export function CoorgPage() {
       heroImage="/coorg.jpg"
       heroImageAlt="Barapole River rafting and Western Ghats hills in Coorg"
       gallery={[
+        { src: "/coorg-adventure.jpg", alt: "Adventure sports and water activities in Coorg", caption: "Adventure water sports and river activities in Madikeri & Shrimangala" },
         { src: "https://images.unsplash.com/photo-1464278533981-50106e6176b1?auto=format&fit=crop&w=800&q=80", alt: "Coffee estate plantations in Madikeri", caption: "Fragrant coffee plantation walking trails and estate homestays" },
-        { src: "/ooty.jpg", alt: "Abbey Falls waterfall and viewpoint", caption: "Abbey Falls roaring cascade and Raja's Seat sunset viewpoints" },
       ]}
       travelInfo={[
         { label: "Altitude", value: "1,100 to 1,750 meters" },
