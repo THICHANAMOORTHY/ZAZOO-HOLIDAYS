@@ -7,49 +7,134 @@ const distDir = path.resolve(__dirname, "../dist")
 const SITE_URL = "https://zazoo1.vercel.app"
 
 const pages = [
+  // ── Core Navigation Pages ──
   {
     path: "packages",
     title: "Tour Packages | ZAZOO Holidays",
-    description: "Explore curated group tour packages to Ooty, Kodaikanal, Munnar, Coorg, Goa, and more from Tamil Nadu.",
-    heading: "Tour Packages",
-    body: "Discover our carefully planned travel packages for college industrial visits, school tours, family vacations, and corporate getaways.",
+    description: "Explore curated group tour packages to Ooty, Kodaikanal, Munnar, Coorg, and more from Tamil Nadu. Flexible plans for schools, colleges, and families.",
+    heading: "Discover Tour Packages",
+    body: "Browse our sample itineraries designed for college industrial visits, school excursions, family holidays, and corporate getaways.",
   },
   {
     path: "upcoming",
     title: "Upcoming Trips | ZAZOO Holidays",
-    description: "Browse upcoming scheduled group departures and seasonal getaways to popular South Indian destinations.",
-    heading: "Upcoming Trips",
-    body: "Join our upcoming fixed departures to Ooty, Kodaikanal, Munnar, and Coorg. Transparent itineraries and guided coordination.",
+    description: "Join scheduled group departures and seasonal getaways to top South Indian hill stations with ZAZOO Holidays. Guided travel and transparent plans.",
+    heading: "Upcoming Scheduled Trips",
+    body: "Browse our fixed departure group journeys departing from Tamil Nadu to Ooty, Kodaikanal, Munnar, and Coorg.",
   },
   {
     path: "plan",
     title: "Custom Trip Planner | ZAZOO Holidays",
-    description: "Design a customized group trip itinerary tailored to your group size, budget, and travel preferences.",
-    heading: "Custom Trip Planner",
-    body: "Share your travel ideas, dates, and group details. We create personalized itineraries with reliable transport and comfortable stays.",
+    description: "Plan a custom group tour with ZAZOO Holidays. Tailored travel dates, vetted stays, and private transport across Tamil Nadu, Kerala, and Karnataka.",
+    heading: "Design Your Custom Group Itinerary",
+    body: "Tell us your group size, travel dates, and dream destinations. We build complete door-to-door itineraries with vetted accommodation and private coach transit.",
   },
   {
     path: "about",
     title: "About Us | ZAZOO Holidays",
-    description: "Learn about ZAZOO Holidays — dedicated group travel planning from Tamil Nadu focusing on safety, comfort, and memories.",
+    description: "Discover ZAZOO Holidays — dedicated travel planners in Tamil Nadu creating safe, well-paced group journeys, college industrial visits, and family holidays.",
     heading: "About ZAZOO Holidays",
     body: "We organize thoughtful, well-paced group travel experiences across Tamil Nadu, Kerala, and Karnataka. From college IVs to family holidays, we handle the logistics so you can enjoy the journey.",
   },
   {
     path: "contact",
     title: "Contact Us | ZAZOO Holidays",
-    description: "Get in touch with ZAZOO Holidays via phone or WhatsApp to start planning your next group tour.",
+    description: "Connect with ZAZOO Holidays via phone or WhatsApp to plan your group tour. Serving colleges, families, and corporate teams across Tamil Nadu.",
     heading: "Contact ZAZOO Holidays",
-    body: "Reach out to discuss your trip requirements. We are based in Tamil Nadu and operate trips across South India. Call or message us on WhatsApp.",
+    body: "Reach out directly via WhatsApp or phone (+91 73589 20436) to discuss your upcoming trip requirements with our planning team.",
   },
   {
     path: "book",
     title: "Booking Enquiry | ZAZOO Holidays",
-    description: "Send a booking enquiry for your upcoming group trip with ZAZOO Holidays.",
-    heading: "Booking Enquiry",
-    body: "Submit your travel enquiry to receive package details and price quotes for your group journey.",
+    description: "Submit a booking enquiry for your upcoming group tour with ZAZOO Holidays. Get custom quotes and itinerary details for your preferred destination.",
+    heading: "Send a Trip Booking Enquiry",
+    body: "Submit your travel enquiry to receive personalized itinerary options, vehicle recommendations, and pricing details.",
   },
-  // Specific package routes
+
+  // ── Legal & E-E-A-T Pages ──
+  {
+    path: "privacy",
+    title: "Privacy Policy | ZAZOO Holidays",
+    description: "Read the privacy policy of ZAZOO Holidays. Understand how we collect, use, and protect your travel enquiry details and personal contact information.",
+    heading: "Privacy Policy",
+    body: "Learn how ZAZOO Holidays protects your contact information, enquiry details, and trip preferences.",
+  },
+  {
+    path: "terms",
+    title: "Terms and Conditions | ZAZOO Holidays",
+    description: "Review the terms and conditions for booking custom group tours, transport arrangements, and travel planning services with ZAZOO Holidays.",
+    heading: "Terms and Conditions",
+    body: "Review terms regarding custom itinerary quotes, booking confirmations, third-party vendor arrangements, and traveler safety.",
+  },
+
+  // ── Service SEO Landing Pages ──
+  {
+    path: "services/college-tours",
+    title: "College Tours in Tamil Nadu | Industrial Visits & Group Trips",
+    description: "College tours in Tamil Nadu by ZAZOO Holidays. Curriculum-aligned industrial visits, safe AC coach transit, vetted dorms, and dedicated road support.",
+    heading: "College Tours & Industrial Visits in Tamil Nadu",
+    body: "Expertly managed industrial visits and batch getaways across South India. Vetted stays, luxury pushback coaches, experienced mountain drivers, and complete student coordination.",
+  },
+  {
+    path: "services/school-tours",
+    title: "School Educational Tours in Tamil Nadu | Safe Student Travel",
+    description: "School educational tours in Tamil Nadu by ZAZOO Holidays. High-safety student excursions, certified coaches, nutritious meals, and guided sightseeing.",
+    heading: "School Educational Tours in Tamil Nadu",
+    body: "Safe and enriching educational excursions for school students. Teacher-supervised itineraries, daylight-only driving, hygienic buffet meals, and interactive science and nature stops.",
+  },
+  {
+    path: "services/family-trips",
+    title: "Family Tour Packages from Tamil Nadu | Comfortable Group Holidays",
+    description: "Family tour packages from Tamil Nadu with ZAZOO Holidays. Relaxed pacing, comfortable resort stays, and private vehicle transport for all ages.",
+    heading: "Family Tour Packages from Tamil Nadu",
+    body: "Private, relaxing family holidays spanning parents, grandparents, and children. Dedicated door-to-door cabs or tempo travelers, serene resort stays, and flexible sightseeing.",
+  },
+  {
+    path: "services/corporate-tours",
+    title: "Corporate Group Trips & Team Offsites | ZAZOO Holidays",
+    description: "Corporate group trips and team offsites from Tamil Nadu with ZAZOO Holidays. Team-building activities, meeting facilities, and seamless transfers.",
+    heading: "Corporate Group Trips & Team Offsites",
+    body: "Turnkey corporate retreats, leadership meetings, and adventure offsites. Conference facilities, river rafting, outdoor team-building games, and GST-compliant invoicing.",
+  },
+  {
+    path: "services/unofficial-trips",
+    title: "Unofficial Group Trips & Friends Getaways | Adventure Travel",
+    description: "Unofficial group trips and friends getaways with ZAZOO Holidays. Flexible road trips, scenic campfires, adventure stays, and budget-friendly plans.",
+    heading: "Unofficial Group Trips & Friends Getaways",
+    body: "Road trips and spontaneous adventures with your crew. Total schedule freedom, private plantation homestays, river rafting, trekking, and campfire nights.",
+  },
+
+  // ── Destination SEO Landing Pages ──
+  {
+    path: "destinations/ooty",
+    title: "Ooty Tour Packages from Tamil Nadu | Nilgiris Hill Station Trips",
+    description: "Ooty tour packages from Tamil Nadu with ZAZOO Holidays. Nilgiris tea estates, Botanical Gardens, Doddabetta Peak, and comfortable private transport.",
+    heading: "Ooty Tour Packages from Tamil Nadu",
+    body: "Experience South India's premier hill station at 2,240m. Sprawling tea estates, UNESCO heritage toy train rides, Pykara waterfalls, and pleasant mountain weather.",
+  },
+  {
+    path: "destinations/kodaikanal",
+    title: "Kodaikanal Tour Packages from Tamil Nadu | Princess of Hill Stations",
+    description: "Kodaikanal tour packages from Tamil Nadu with ZAZOO Holidays. Kodai Lake, Coaker's Walk, Pine Forests, and tranquil resort stays in Palani Hills.",
+    heading: "Kodaikanal Tour Packages from Tamil Nadu",
+    body: "Quiet misty hills at 2,133m in the Palani range. Star-shaped Kodai Lake boating, Coaker's Walk cliff views, Pine Forest trails, and scenic waterfalls.",
+  },
+  {
+    path: "destinations/munnar",
+    title: "Munnar Tour Experiences from Tamil Nadu | Kerala Tea Hills",
+    description: "Munnar tour packages from Tamil Nadu with ZAZOO Holidays. Sprawling tea estates, Eravikulam National Park, Mattupetty Dam, and Western Ghats mist.",
+    heading: "Munnar Tour Experiences from Tamil Nadu",
+    body: "Rolling green carpet tea plantations in the Western Ghats. Wildlife spotting at Eravikulam, speedboating on Mattupetty Dam, and refreshing high-range climates.",
+  },
+  {
+    path: "destinations/coorg",
+    title: "Coorg Travel Packages from Tamil Nadu | River Rafting & Coffee Hills",
+    description: "Coorg tour packages from Tamil Nadu with ZAZOO Holidays. Barapole River rafting, coffee plantation homestays, Abbey Falls, and Raja's Seat in Karnataka.",
+    heading: "Karnataka Coorg Travel Packages from Tamil Nadu",
+    body: "Thrilling white-water rapids on the Barapole River, aromatic coffee estate walks, Abbey Falls, and Raja's Seat viewpoints. Perfect for adventure and group getaways.",
+  },
+
+  // ── Specific Package Detail Routes ──
   {
     path: "packages/ooty-blue-mountains",
     title: "Ooty Blue Mountains Tour Package | ZAZOO Holidays",
@@ -116,7 +201,7 @@ const pages = [
 ]
 
 const homePrerenderHtml = `
-  <main>
+  <main id="main-content">
     <header class="hero">
       <div class="hero-copy">
         <span class="pill">JOURNEYS MADE PERSONAL</span>
@@ -140,31 +225,31 @@ const homePrerenderHtml = `
           <small>01</small>
           <h3>College IV</h3>
           <p>Educational tours, industrial visits, and unforgettable college group experiences organized with care.</p>
-          <a href="/packages?category=College%20IV">Explore College IV &rarr;</a>
+          <a href="/services/college-tours">Explore College Tours &rarr;</a>
         </article>
         <article class="category-card">
           <small>02</small>
           <h3>School Tours</h3>
           <p>Safe, organized, and memorable educational trips designed for school students.</p>
-          <a href="/packages?category=School%20Tours">Explore School Tours &rarr;</a>
+          <a href="/services/school-tours">Explore School Tours &rarr;</a>
         </article>
         <article class="category-card">
           <small>03</small>
           <h3>Family Trips</h3>
           <p>Enjoy beautiful destinations, comfortable travel, and memorable family vacations.</p>
-          <a href="/packages?category=Family%20Trips">Explore Family Trips &rarr;</a>
+          <a href="/services/family-trips">Explore Family Trips &rarr;</a>
         </article>
         <article class="category-card">
           <small>04</small>
           <h3>Corporate Tours</h3>
           <p>Professional travel arrangements, employee outings, and team-building experiences.</p>
-          <a href="/packages?category=Corporate%20Tours">Explore Corporate Tours &rarr;</a>
+          <a href="/services/corporate-tours">Explore Corporate Tours &rarr;</a>
         </article>
         <article class="category-card">
           <small>05</small>
           <h3>Unofficial Trips</h3>
           <p>Adventure trips, weekend getaways, and unforgettable journeys with friends.</p>
-          <a href="/packages?category=Unofficial%20Trips">Explore Unofficial Trips &rarr;</a>
+          <a href="/services/unofficial-trips">Explore Unofficial Trips &rarr;</a>
         </article>
       </div>
     </section>
@@ -182,6 +267,7 @@ const homePrerenderHtml = `
           </div>
           <h3>Ooty (Udhagamandalam)</h3>
           <p>Ooty sits at around 2,240 m in the Nilgiris and is one of the most visited hill stations in South India. The town is known for its tea and eucalyptus plantations, Ooty Lake, Botanical Gardens, and cool climate throughout the year. It is a comfortable journey from Coimbatore and an easy choice for first-time group trips.</p>
+          <a href="/destinations/ooty">View Ooty Tour Packages &rarr;</a>
         </article>
         <article class="dest-card">
           <div class="dest-card-header">
@@ -189,6 +275,7 @@ const homePrerenderHtml = `
           </div>
           <h3>Kodaikanal</h3>
           <p>Kodaikanal is a quiet hill town in the Palani Hills at around 2,133 m. The star-shaped Kodai Lake, Coaker's Walk, Pine Forests, and Silver Cascade Falls are well-known spots. It suits groups looking for a relaxed pace with scenic walks and boat rides rather than a busy tourist circuit.</p>
+          <a href="/destinations/kodaikanal">View Kodaikanal Tour Packages &rarr;</a>
         </article>
         <article class="dest-card">
           <div class="dest-card-header">
@@ -196,6 +283,7 @@ const homePrerenderHtml = `
           </div>
           <h3>Munnar</h3>
           <p>Munnar in the Western Ghats is famous for its rolling tea estates, misty mornings, and biodiversity. Eravikulam National Park, Mattupetty Dam, and Top Station are popular stops. The cooler climate and scenic roads make it a refreshing option for family and college groups from Tamil Nadu.</p>
+          <a href="/destinations/munnar">View Munnar Tour Experiences &rarr;</a>
         </article>
         <article class="dest-card">
           <div class="dest-card-header">
@@ -203,6 +291,7 @@ const homePrerenderHtml = `
           </div>
           <h3>Coorg (Madikeri)</h3>
           <p>Coorg in Karnataka is known for its coffee and spice plantations, the Barapole River, Abbey Falls, and Raja's Seat viewpoint. The region's hilly terrain supports activities like river rafting and plantation walks. It is a good fit for groups seeking a mix of nature and adventure.</p>
+          <a href="/destinations/coorg">View Coorg Travel Packages &rarr;</a>
         </article>
       </div>
     </section>
@@ -217,22 +306,27 @@ const homePrerenderHtml = `
         <div class="type-card">
           <h3>College Tours & IV</h3>
           <p>College tours and industrial visits are planned in alignment with semester schedules and curriculum requirements. We coordinate comfortable group transportation, vetted dormitory or hotel accommodation, and on-ground logistics so faculty and student coordinators can focus on learning and bonding without travel hassles.</p>
+          <a href="/services/college-tours">Explore College Tours &rarr;</a>
         </div>
         <div class="type-card">
           <h3>School Tours</h3>
           <p>School educational trips demand thorough attention to safety, hygiene, nutrition, and age-appropriate pacing. We collaborate closely with school faculties to construct balanced itineraries with cultural and natural landmarks, safe coach transport, and dedicated ground support.</p>
+          <a href="/services/school-tours">Explore School Tours &rarr;</a>
         </div>
         <div class="type-card">
           <h3>Family Trips</h3>
           <p>Family vacations span multiple generations with varying energy levels and preferences. We arrange private vehicles, comfortable family-friendly stays, and relaxed daily plans that blend sightseeing with plenty of rest so grandparents and children alike travel at ease.</p>
+          <a href="/services/family-trips">Explore Family Trips &rarr;</a>
         </div>
         <div class="type-card">
           <h3>Corporate Tours</h3>
           <p>Corporate outings, leadership offsites, and team-building getaways are customized to your team size and objectives. We manage end-to-end conference halls, outdoor recreational activities, reliable transfers, and quality dining to ensure a productive and refreshing retreat.</p>
+          <a href="/services/corporate-tours">Explore Corporate Tours &rarr;</a>
         </div>
         <div class="type-card">
           <h3>Unofficial Trips</h3>
           <p>Unofficial trips, friends' road journeys, and spontaneous weekend escapes are crafted with budget flexibility, trekking, campfires, and scenic viewpoints in mind. We suggest authentic homestays and offbeat trails, balancing exciting adventures with relaxed free time.</p>
+          <a href="/services/unofficial-trips">Explore Unofficial Trips &rarr;</a>
         </div>
       </div>
     </section>
@@ -323,7 +417,7 @@ function run() {
 
   // 1. Inject prerendered semantic body into the homepage index.html
   const updatedHomeHtml = baseHtml.replace(
-    '<div id="root"></div>',
+    /<div id="root">[\s\S]*?<\/div>/,
     `<div id="root">${homePrerenderHtml}</div>`
   )
   fs.writeFileSync(templatePath, updatedHomeHtml, "utf8")
@@ -336,7 +430,7 @@ function run() {
     fs.mkdirSync(targetDir, { recursive: true })
 
     const pagePrerenderBody = `
-      <main class="page-container">
+      <main id="main-content" class="page-container">
         <header class="page-hero">
           <h1>${page.heading}</h1>
           <p>${page.body}</p>
@@ -350,12 +444,12 @@ function run() {
     let pageHtml = baseHtml
       // Canonical URL -> specific to this page!
       .replace(
-        '<link rel="canonical" href="https://zazoo1.vercel.app/" />',
+        /<link rel="canonical" href=".*?" \/>/,
         `<link rel="canonical" href="${pageUrl}" />`
       )
       // og:url -> specific to this page!
       .replace(
-        '<meta property="og:url" content="https://zazoo1.vercel.app/" />',
+        /<meta property="og:url" content=".*?" \/>/,
         `<meta property="og:url" content="${pageUrl}" />`
       )
       // title -> specific to this page!
@@ -390,7 +484,7 @@ function run() {
       )
       // inject prerender body
       .replace(
-        '<div id="root"></div>',
+        /<div id="root">[\s\S]*?<\/div>/,
         `<div id="root">${pagePrerenderBody}</div>`
       )
 

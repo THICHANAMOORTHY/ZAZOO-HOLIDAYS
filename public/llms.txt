@@ -1,0 +1,26 @@
+# ZAZOO Holidays
+
+> Your Journey. Our Adventure.
+
+ZAZOO Holidays is a dedicated travel planning and coordination agency based in Tamil Nadu, India. We organize customized group journeys across South India, with special focus on Tamil Nadu, Kerala, and Karnataka.
+
+## Core Travel Services
+- **College Tours & Industrial Visits (IV):** Planned around academic schedules with reliable coach transportation, safe group stays, and industrial/cultural visit coordination. URL: https://zazoo1.vercel.app/services/college-tours
+- **School Educational Tours:** High priority on safety, age-appropriate pacing, hygiene, nutrition, and student supervision. URL: https://zazoo1.vercel.app/services/school-tours
+- **Family Vacations:** Multigenerational pacing, private vehicles, family-friendly hotels, and balanced leisure time. URL: https://zazoo1.vercel.app/services/family-trips
+- **Corporate Offsites & Tours:** Conference arrangements, team-building activities, transfers, and corporate group dining. URL: https://zazoo1.vercel.app/services/corporate-tours
+- **Unofficial Trips & Getaways:** Flexible itineraries, scenic routes, campfires, trekking, and adventure activities for friends. URL: https://zazoo1.vercel.app/services/unofficial-trips
+
+## Key Destinations
+- **Ooty (Udhagamandalam), Tamil Nadu:** Nilgiris tea estates, Botanical Gardens, Doddabetta Peak, and Ooty Lake. URL: https://zazoo1.vercel.app/destinations/ooty
+- **Kodaikanal, Tamil Nadu:** Palani Hills, Kodai Lake, Coaker's Walk, Pine Forests, and waterfalls. URL: https://zazoo1.vercel.app/destinations/kodaikanal
+- **Munnar, Kerala:** Western Ghats tea plantations, Eravikulam National Park, Mattupetty Dam, and misty viewpoints. URL: https://zazoo1.vercel.app/destinations/munnar
+- **Coorg (Madikeri), Karnataka:** Coffee and spice plantations, Barapole River rafting, Abbey Falls, and Raja's Seat. URL: https://zazoo1.vercel.app/destinations/coorg
+- **Other Destinations:** Wayanad, Vagamon, Kerala Backwaters, Yercaud, and Goa.
+
+## Contact & Enquiries
+- **Official Website:** https://zazoo1.vercel.app
+- **Phone / WhatsApp:** +91 73589 20436
+- **WhatsApp Link:** https://wa.me/917358920436
+- **Instagram:** https://instagram.com/zazoo_holidays_official
+- **Operating Region:** Operating across Tamil Nadu, Kerala, and Karnataka, India.

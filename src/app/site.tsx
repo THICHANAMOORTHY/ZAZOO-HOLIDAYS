@@ -45,14 +45,14 @@ import {
   useSearchParams,
 } from "react-router"
 
-const PHONE = "+91 73589 20436"
-const WA = "https://wa.me/917358920436"
-const SITE_URL = "https://zazoo1.vercel.app"
+export const PHONE = "+91 73589 20436"
+export const WA = "https://wa.me/917358920436"
+export const SITE_URL = "https://zazoo1.vercel.app"
 const image = (id: string) =>
   id.startsWith("/") || id.startsWith("http")
     ? id
     : `https://images.unsplash.com/${id}?auto=format&fit=crop&w=1400&q=82`
-const whatsapp = (text: string) => `${WA}?text=${encodeURIComponent(text)}`
+export const whatsapp = (text: string) => `${WA}?text=${encodeURIComponent(text)}`
 
 type TripPackage = {
   slug: string
@@ -207,7 +207,7 @@ const categories = [
   ],
 ] as const
 
-function Meta({ title, description }: { title: string; description: string }) {
+export function Meta({ title, description }: { title: string; description: string }) {
   const loc = useLocation()
   const canonicalUrl = `${SITE_URL}${loc.pathname}`
 
@@ -275,7 +275,7 @@ function Brand({ light = false }: { light?: boolean }) {
     </Link>
   )
 }
-function Button({
+export function Button({
   to,
   children,
   kind = "primary",
@@ -313,14 +313,24 @@ function Navbar() {
               {label}
             </NavLink>
           ))}
-          <a className="wa-link" href={WA} target="_blank">
+          <a
+            className="wa-link"
+            href={WA}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Chat with ZAZOO Holidays on WhatsApp"
+          >
             <MessageCircle />
           </a>
           <Button to="/book">
             Book your trip <ArrowRight />
           </Button>
         </nav>
-        <button className="menu" onClick={() => setOpen(!open)}>
+        <button
+          className="menu"
+          onClick={() => setOpen(!open)}
+          aria-label="Toggle navigation menu"
+        >
           {open ? <X /> : <Menu />}
         </button>
       </div>
@@ -337,35 +347,61 @@ function Footer() {
             Thoughtful journeys for colleges, schools, families, teams and
             friends across Tamil Nadu and beyond.
           </p>
-          <a href="https://instagram.com/zazoo_holidays_official">
+          <a
+            href="https://instagram.com/zazoo_holidays_official"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Visit ZAZOO Holidays on Instagram"
+          >
             <Camera /> @zazoo_holidays_official
           </a>
         </div>
         <div>
-          <h3>Explore</h3>
-          <Link to="/packages">Tour packages</Link>
-          <Link to="/upcoming">Upcoming trips</Link>
-          <Link to="/plan">Custom planner</Link>
+          <h3>Destinations</h3>
+          <Link to="/destinations/ooty">Ooty Tour Packages</Link>
+          <Link to="/destinations/kodaikanal">Kodaikanal Packages</Link>
+          <Link to="/destinations/munnar">Munnar Experiences</Link>
+          <Link to="/destinations/coorg">Coorg Travel Packages</Link>
+          <Link to="/packages">All Tour Packages</Link>
+        </div>
+        <div>
+          <h3>Services</h3>
+          <Link to="/services/college-tours">College Tours & IV</Link>
+          <Link to="/services/school-tours">School Educational Trips</Link>
+          <Link to="/services/family-trips">Family Tour Packages</Link>
+          <Link to="/services/corporate-tours">Corporate Group Trips</Link>
+          <Link to="/services/unofficial-trips">Unofficial Group Trips</Link>
         </div>
         <div>
           <h3>Company</h3>
           <Link to="/about">About us</Link>
           <Link to="/contact">Contact us</Link>
           <Link to="/book">Booking enquiry</Link>
+          <Link to="/privacy">Privacy policy</Link>
+          <Link to="/terms">Terms & conditions</Link>
         </div>
         <div>
           <h3>Let’s talk</h3>
-          <a href={`tel:${PHONE.replaceAll(" ", "")}`}>
+          <a href={`tel:${PHONE.replaceAll(" ", "")}`} aria-label={`Call ZAZOO Holidays at ${PHONE}`}>
             <Phone /> {PHONE}
           </a>
-          <a href={WA}>
+          <a
+            href={WA}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Chat with ZAZOO Holidays on WhatsApp"
+          >
             <MessageCircle /> WhatsApp us
           </a>
           <p>Serving all over Tamil Nadu</p>
         </div>
       </div>
+      <div className="trust-note">
+        <p>Curated by ZAZOO Holidays Tour Planning Team · Tamil Nadu, India · Last updated: November 2026</p>
+        <p className="disclaimer">Travel itineraries, vehicle arrangements, and accommodations are custom-tailored to group requirements and seasonal availability. Please adhere to local travel regulations.</p>
+      </div>
       <div className="copyright">
-        <span>© 2026 ZAZOO Holidays</span>
+        <span>© 2026 ZAZOO Holidays. All rights reserved.</span>
         <span>Travel far. Remember forever.</span>
       </div>
     </footer>
@@ -374,12 +410,19 @@ function Footer() {
 export function Root() {
   return (
     <>
+      <a href="#main-content" className="skip-link">Skip to main content</a>
       <Navbar />
-      <main>
+      <main id="main-content">
         <Outlet />
       </main>
       <Footer />
-      <a className="floating-wa" href={WA} target="_blank">
+      <a
+        className="floating-wa"
+        href={WA}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Contact ZAZOO Holidays on WhatsApp"
+      >
         <MessageCircle />
       </a>
     </>
@@ -402,7 +445,7 @@ function Heading({
     </div>
   )
 }
-function PageHero({
+export function PageHero({
   eyebrow,
   title,
   text,
@@ -541,7 +584,14 @@ export function Home() {
         </div>
         <div className="coorg-spotlight">
           <div className="coorg-spotlight-img">
-            <img src="/coorg.webp" alt="Karnataka Coorg River Rafting" />
+            <img
+              src="/coorg.webp"
+              alt="Karnataka Coorg River Rafting"
+              width={600}
+              height={400}
+              loading="lazy"
+              decoding="async"
+            />
             <span className="coorg-tag">
               <Sparkles /> Featured Adventure · Karnataka
             </span>
@@ -595,6 +645,10 @@ export function Home() {
           <img
             src={image("photo-1527631746610-bca00a040d60")}
             alt="Friends enjoying a journey"
+            width={520}
+            height={420}
+            loading="lazy"
+            decoding="async"
           />
           <b>
             10+<small>Destinations to begin with</small>
@@ -641,24 +695,32 @@ export function Home() {
             {
               name: "Ooty (Udhagamandalam)",
               state: "Tamil Nadu",
+              link: "/destinations/ooty",
+              cta: "View Ooty Tour Packages",
               desc:
                 "Ooty sits at around 2,240 m in the Nilgiris and is one of the most visited hill stations in South India. The town is known for its tea and eucalyptus plantations, Ooty Lake, Botanical Gardens, and cool climate throughout the year. It is a comfortable journey from Coimbatore and an easy choice for first-time group trips.",
             },
             {
               name: "Kodaikanal",
               state: "Tamil Nadu",
+              link: "/destinations/kodaikanal",
+              cta: "View Kodaikanal Tour Packages",
               desc:
                 "Kodaikanal is a quiet hill town in the Palani Hills at around 2,133 m. The star-shaped Kodai Lake, Coaker's Walk, Pine Forests, and Silver Cascade Falls are well-known spots. It suits groups looking for a relaxed pace with scenic walks and boat rides rather than a busy tourist circuit.",
             },
             {
               name: "Munnar",
               state: "Kerala",
+              link: "/destinations/munnar",
+              cta: "View Munnar Tour Experiences",
               desc:
                 "Munnar in the Western Ghats is famous for its rolling tea estates, misty mornings, and biodiversity. Eravikulam National Park, Mattupetty Dam, and Top Station are popular stops. The cooler climate and scenic roads make it a refreshing option for family and college groups from Tamil Nadu.",
             },
             {
               name: "Coorg (Madikeri)",
               state: "Karnataka",
+              link: "/destinations/coorg",
+              cta: "View Coorg Travel Packages",
               desc:
                 "Coorg in Karnataka is known for its coffee and spice plantations, the Barapole River, Abbey Falls, and Raja's Seat viewpoint. The region's hilly terrain supports activities like river rafting and plantation walks. It is a good fit for groups seeking a mix of nature and adventure.",
             },
@@ -670,6 +732,20 @@ export function Home() {
               </div>
               <h3>{d.name}</h3>
               <p>{d.desc}</p>
+              <Link
+                to={d.link}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  marginTop: "14px",
+                  color: "#164f3c",
+                  fontWeight: "700",
+                  fontSize: "13px",
+                }}
+              >
+                {d.cta} &rarr;
+              </Link>
             </div>
           ))}
         </div>
@@ -687,35 +763,55 @@ export function Home() {
             {
               label: "College Tours & IV",
               icon: GraduationCap,
+              link: "/services/college-tours",
               text: "College tours and industrial visits are planned in alignment with semester schedules and curriculum requirements. We coordinate comfortable group transportation, vetted dormitory or hotel accommodation, and on-ground logistics so faculty and student coordinators can focus on learning and bonding without travel hassles.",
             },
             {
               label: "School Tours",
               icon: School,
+              link: "/services/school-tours",
               text: "School educational trips demand thorough attention to safety, hygiene, nutrition, and age-appropriate pacing. We collaborate closely with school faculties to construct balanced itineraries with cultural and natural landmarks, safe coach transport, and dedicated ground support.",
             },
             {
               label: "Family Trips",
               icon: Users,
+              link: "/services/family-trips",
               text: "Family vacations span multiple generations with varying energy levels and preferences. We arrange private vehicles, comfortable family-friendly stays, and relaxed daily plans that blend sightseeing with plenty of rest so grandparents and children alike travel at ease.",
             },
             {
               label: "Corporate Tours",
               icon: BriefcaseBusiness,
+              link: "/services/corporate-tours",
               text: "Corporate outings, leadership offsites, and team-building getaways are customized to your team size and objectives. We manage end-to-end conference halls, outdoor recreational activities, reliable transfers, and quality dining to ensure a productive and refreshing retreat.",
             },
             {
               label: "Unofficial Trips",
               icon: Mountain,
+              link: "/services/unofficial-trips",
               text: "Unofficial trips, friends' road journeys, and spontaneous weekend escapes are crafted with budget flexibility, trekking, campfires, and scenic viewpoints in mind. We suggest authentic homestays and offbeat trails, balancing exciting adventures with relaxed free time.",
             },
-          ].map(({ label, icon: Icon, text }) => (
+          ].map(({ label, icon: Icon, link, text }) => (
             <div key={label} className="type-card">
               <span className="type-icon">
                 <Icon />
               </span>
               <h3>{label}</h3>
               <p>{text}</p>
+              <Link
+                to={link}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  marginTop: "auto",
+                  paddingTop: "14px",
+                  color: "#164f3c",
+                  fontWeight: "700",
+                  fontSize: "12px",
+                }}
+              >
+                Explore {label} &rarr;
+              </Link>
             </div>
           ))}
         </div>
@@ -843,14 +939,17 @@ export function Home() {
     </>
   )
 }
-function PackageCard({ item }: { item: TripPackage }) {
+export function PackageCard({ item }: { item: TripPackage }) {
   return (
     <article className="package-card">
       <Link to={`/packages/${item.slug}`} className="package-img">
         <img
           src={item.image}
           alt={`${item.destination} landscape`}
+          width={400}
+          height={260}
           loading="lazy"
+          decoding="async"
         />
         <span>{item.category}</span>
       </Link>
@@ -878,7 +977,12 @@ function PackageCard({ item }: { item: TripPackage }) {
           >
             <MessageCircle /> WhatsApp for price details
           </a>
-          <Link to={`/packages/${item.slug}`} className="view-detail-btn" title="View Details">
+          <Link
+            to={`/packages/${item.slug}`}
+            className="view-detail-btn"
+            title="View Details"
+            aria-label={`View full details for ${item.title}`}
+          >
             <ArrowRight />
           </Link>
         </footer>
@@ -963,7 +1067,14 @@ export function PackageDetail() {
         description={`${p.title} sample itinerary with ZAZOO Holidays.`}
       />
       <section className="detail-hero">
-        <img src={p.image} alt={p.destination} />
+        <img
+          src={p.image}
+          alt={p.destination}
+          width={1200}
+          height={600}
+          fetchPriority="high"
+          decoding="async"
+        />
         <div />
         <article>
           <span>{p.category}</span>

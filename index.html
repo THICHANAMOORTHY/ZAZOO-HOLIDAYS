@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Primary meta -->
-    <meta name="description" content="Thoughtfully planned college, school, family, corporate and friends trips from Tamil Nadu. ZAZOO Holidays organises memorable group journeys to Ooty, Kodaikanal, Munnar, Coorg and more." />
+    <meta name="description" content="Thoughtful group tours from Tamil Nadu. ZAZOO Holidays organises college IVs, school trips, family getaways, and corporate retreats across South India." />
     <meta name="robots" content="index, follow" />
+
+    <!-- Performance: Preload hero LCP background image -->
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1464278533981-50106e6176b1?auto=format&amp;fit=crop&amp;w=2000&amp;q=88" fetchpriority="high" />
 
     <!-- Canonical (homepage baseline; JS updates per-page) -->
     <link rel="canonical" href="https://zazoo1.vercel.app/" />
@@ -14,9 +17,10 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="ZAZOO Holidays" />
-    <meta property="og:description" content="Thoughtfully planned college, school, family, corporate and friends trips from Tamil Nadu. ZAZOO Holidays organises memorable group journeys to Ooty, Kodaikanal, Munnar, Coorg and more." />
+    <meta property="og:description" content="Thoughtful group tours from Tamil Nadu. ZAZOO Holidays organises college IVs, school trips, family getaways, and corporate retreats across South India." />
     <meta property="og:url" content="https://zazoo1.vercel.app/" />
     <meta property="og:image" content="https://zazoo1.vercel.app/og-image.svg" />
+    <meta property="og:image:type" content="image/svg+xml" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="ZAZOO Holidays — group tours from Tamil Nadu to Ooty, Kodaikanal, Munnar, Coorg and more." />
@@ -24,9 +28,51 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="ZAZOO Holidays — Your Journey. Our Adventure." />
-    <meta name="twitter:description" content="Thoughtfully planned college, school, family, corporate and friends trips from Tamil Nadu." />
+    <meta name="twitter:description" content="Thoughtful group tours from Tamil Nadu. ZAZOO Holidays organises college IVs, school trips, family getaways, and corporate retreats across South India." />
     <meta name="twitter:image" content="https://zazoo1.vercel.app/og-image.svg" />
     <meta name="twitter:image:alt" content="ZAZOO Holidays branded social card" />
+
+    <!-- AI / LLM discoverability -->
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM Information" />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://zazoo1.vercel.app/#website",
+          "url": "https://zazoo1.vercel.app/",
+          "name": "ZAZOO Holidays",
+          "description": "Thoughtful group tours from Tamil Nadu to Ooty, Kodaikanal, Munnar, Coorg and South India.",
+          "inLanguage": "en"
+        },
+        {
+          "@type": ["TravelAgency", "Organization"],
+          "@id": "https://zazoo1.vercel.app/#organization",
+          "name": "ZAZOO Holidays",
+          "url": "https://zazoo1.vercel.app/",
+          "logo": "https://zazoo1.vercel.app/og-image.svg",
+          "image": "https://zazoo1.vercel.app/og-image.svg",
+          "telephone": "+91 73589 20436",
+          "address": {
+            "@type": "PostalAddress",
+            "addressRegion": "Tamil Nadu",
+            "addressCountry": "IN"
+          },
+          "areaServed": [
+            { "@type": "AdministrativeArea", "name": "Tamil Nadu" },
+            { "@type": "AdministrativeArea", "name": "Kerala" },
+            { "@type": "AdministrativeArea", "name": "Karnataka" }
+          ],
+          "sameAs": [
+            "https://instagram.com/zazoo_holidays_official"
+          ]
+        }
+      ]
+    }
+    </script>
 
     <!-- Favicon & theme -->
     <meta name="theme-color" content="#164f3c" />
