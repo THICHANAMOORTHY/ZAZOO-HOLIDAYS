@@ -251,6 +251,14 @@ function Meta({ title, description }: { title: string; description: string }) {
       .querySelector('meta[property="og:description"]')
       ?.setAttribute("content", description)
 
+    // twitter:title & twitter:description
+    document
+      .querySelector('meta[name="twitter:title"]')
+      ?.setAttribute("content", `${title} | ZAZOO Holidays`)
+    document
+      .querySelector('meta[name="twitter:description"]')
+      ?.setAttribute("content", description)
+
     window.scrollTo(0, 0)
   }, [title, description, canonicalUrl])
   return null
@@ -677,29 +685,29 @@ export function Home() {
         <div className="types-grid">
           {[
             {
-              label: "College IV Trips",
+              label: "College Tours & IV",
               icon: GraduationCap,
-              text: "College industrial visit and educational tour packages are planned with the academic calendar in mind. We handle transport, accommodation booking, and on-road coordination so faculty can focus on the students. Routes and stops are chosen to meet IV requirements where applicable.",
+              text: "College tours and industrial visits are planned in alignment with semester schedules and curriculum requirements. We coordinate comfortable group transportation, vetted dormitory or hotel accommodation, and on-ground logistics so faculty and student coordinators can focus on learning and bonding without travel hassles.",
             },
             {
               label: "School Tours",
               icon: School,
-              text: "School trips need careful attention to safety, timing, and age-appropriate activity. We work with teachers to plan manageable itineraries that include meaningful stops without overloading students. Transport is arranged with safety in mind.",
+              text: "School educational trips demand thorough attention to safety, hygiene, nutrition, and age-appropriate pacing. We collaborate closely with school faculties to construct balanced itineraries with cultural and natural landmarks, safe coach transport, and dedicated ground support.",
             },
             {
               label: "Family Trips",
               icon: Users,
-              text: "Family travel involves different ages and comfort levels. We plan trips that include a mix of sightseeing, rest time, and optional activities. Accommodation options are discussed based on the family's needs. We keep the itinerary practical rather than packed.",
+              text: "Family vacations span multiple generations with varying energy levels and preferences. We arrange private vehicles, comfortable family-friendly stays, and relaxed daily plans that blend sightseeing with plenty of rest so grandparents and children alike travel at ease.",
             },
             {
               label: "Corporate Tours",
               icon: BriefcaseBusiness,
-              text: "Corporate outings and employee trips are arranged with group size and schedule in mind. We manage transport logistics, meal arrangements, and activity bookings so the team can enjoy the break. Team-building activity suggestions can be included.",
+              text: "Corporate outings, leadership offsites, and team-building getaways are customized to your team size and objectives. We manage end-to-end conference halls, outdoor recreational activities, reliable transfers, and quality dining to ensure a productive and refreshing retreat.",
             },
             {
-              label: "Friends Getaways",
+              label: "Unofficial Trips",
               icon: Mountain,
-              text: "Friend group trips tend to be more flexible and adventure-oriented. We work with the group's interests and budget to suggest routes and stays. These trips often include a mix of outdoor activity, sightseeing, and unstructured time.",
+              text: "Unofficial trips, friends' road journeys, and spontaneous weekend escapes are crafted with budget flexibility, trekking, campfires, and scenic viewpoints in mind. We suggest authentic homestays and offbeat trails, balancing exciting adventures with relaxed free time.",
             },
           ].map(({ label, icon: Icon, text }) => (
             <div key={label} className="type-card">
