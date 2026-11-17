@@ -142,7 +142,7 @@ export const packages: TripPackage[] = [
     "3 Days / 2 Nights",
     4799,
     "College IV & Adventure",
-    "/coorg.webp",
+    "/coorg.jpg",
     "Barapole river rafting, lush coffee plantation walks, Abbey Falls, and thrilling outdoor memories with your group.",
   ],
   [
@@ -598,7 +598,7 @@ export function Home() {
         <div className="coorg-spotlight">
           <div className="coorg-spotlight-img">
             <img
-              src="/coorg.webp"
+              src="/coorg.jpg"
               alt="Karnataka Coorg River Rafting"
               width={600}
               height={400}

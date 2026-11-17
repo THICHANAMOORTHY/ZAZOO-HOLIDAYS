@@ -319,7 +319,7 @@ export function CollegeToursPage() {
       heroImageAlt="College students and industrial visit travel group"
       gallery={[
         { src: "/ooty.jpg", alt: "Nilgiris mountain drive for college tours", caption: "Scenic Nilgiri mountain drive for college groups" },
-        { src: "/coorg.webp", alt: "Barapole river rafting and team activities", caption: "Barapole river rafting and outdoor team activities" },
+        { src: "/coorg.jpg", alt: "Barapole river rafting and team activities", caption: "Barapole river rafting and outdoor team activities" },
       ]}
       travelInfo={[
         { label: "Origin", value: "Any campus in Tamil Nadu" },
@@ -580,7 +580,7 @@ export function CorporateToursPage() {
       heroImage="https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1200&q=82"
       heroImageAlt="Corporate team retreat and outdoor offsite meeting"
       gallery={[
-        { src: "/coorg.webp", alt: "Corporate river rafting in Coorg", caption: "Team-building white-water rafting on the Barapole River" },
+        { src: "/coorg.jpg", alt: "Corporate river rafting in Coorg", caption: "Team-building white-water rafting on the Barapole River" },
         { src: "/munnar.jpg", alt: "Munnar resort offsite", caption: "Conference and strategy sessions amidst Munnar hills" },
       ]}
       travelInfo={[
@@ -666,7 +666,7 @@ export function UnofficialTripsPage() {
       heroImage="https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1200&q=82"
       heroImageAlt="Friends enjoying a spontaneous road trip adventure"
       gallery={[
-        { src: "/coorg.webp", alt: "Campfire and adventure in Karnataka", caption: "Campfire nights and river rafting in Coorg" },
+        { src: "/coorg.jpg", alt: "Campfire and adventure in Karnataka", caption: "Campfire nights and river rafting in Coorg" },
         { src: "/kodaikanal.jpg", alt: "Pine forest hiking and scenic views", caption: "Pine forest trekking and scenic viewpoint halts" },
       ]}
       travelInfo={[
@@ -1011,7 +1011,7 @@ export function CoorgPage() {
       h1="Karnataka Coorg Travel Packages from Tamil Nadu"
       intro="Known as the Scotland of India, Coorg (Kodagu) blends misty hills, fragrant coffee plantations, thrilling Barapole river rafting, and distinct cultural heritage into an incredible group holiday."
       schemaType="TouristDestination"
-      heroImage="/coorg.webp"
+      heroImage="/coorg.jpg"
       heroImageAlt="Barapole River rafting and Western Ghats hills in Coorg"
       gallery={[
         { src: "https://images.unsplash.com/photo-1464278533981-50106e6176b1?auto=format&fit=crop&w=800&q=80", alt: "Coffee estate plantations in Madikeri", caption: "Fragrant coffee plantation walking trails and estate homestays" },
